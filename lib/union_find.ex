@@ -6,18 +6,16 @@ defmodule UnionFind do
 
   def start(_type, _args) do
     # code
-    uf = Uf1.make(5)
+    uf =
+      Uf1.make(5)
+      |> Uf1.union(2, 3)
+      |> Uf1.union(1, 4)
+      |> Uf1.union(4, 0)
+
     IO.inspect(uf)
-    groups = length(uf)
-    first = Uf1.union({uf, groups}, 2, 3)
-    second = Uf1.union(first, 1, 4)
-    third = Uf1.union(second, 4, 0)
-    IO.inspect(first)
-    IO.inspect(second)
-    IO.inspect(third)
-    IO.inspect(all(third, 0))
-    IO.inspect(Uf1.find(third, 0))
-    summary(third)
+    IO.inspect(all(uf, 0))
+    IO.inspect(Uf1.find(uf, 0))
+    summary(uf)
 
     Supervisor.start_link([], strategy: :one_for_one)
   end

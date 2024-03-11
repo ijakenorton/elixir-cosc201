@@ -1,5 +1,8 @@
 defmodule Uf1 do
-  def make(n), do: Enum.to_list(0..(n - 1))
+  def make(n) do
+    uf = Enum.to_list(0..(n - 1))
+    {uf, length(uf)}
+  end
 
   def find({reps, _}, x), do: Enum.at(reps, x)
   def find(reps, x), do: Enum.at(reps, x)
